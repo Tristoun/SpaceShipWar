@@ -82,28 +82,28 @@ void game(){
                         break;
                     case ALLEGRO_KEY_DOWN :
                         sens = 2;
-                        moveaccess = moveupdown(joueur, LONGUEUR, sens);
+                        moveaccess = moveupdown(&joueur);
                         if (moveaccess !=0) {
                             keys[DOWN] = 1;
                         }
                         break;
                     case ALLEGRO_KEY_UP :
                         sens = 1;
-                        moveaccess = moveupdown(joueur, LONGUEUR, sens);
+                        moveaccess = moveupdown(&joueur);
                         if (moveaccess !=0) {
                             keys[UP] = 1;
                         }
                         break;
                     case ALLEGRO_KEY_LEFT :
                         sens = 4;
-                        moveaccess = moveupdown(joueur, LARGEUR, sens);
+                        moveaccess = moveupdown(&joueur);
                         if (moveaccess !=0) {
                             keys[LEFT] = 1;
                         }
                         break;
                     case ALLEGRO_KEY_RIGHT :
                         sens = 3;
-                        moveaccess = moveupdown(joueur, LARGEUR, sens);
+                        moveaccess = moveupdown(&joueur);
                         if(moveaccess != 0) {
                             keys[RIGHT] = 1;
                         }
@@ -136,9 +136,9 @@ void game(){
                         break;
                 }
                 break;
-            
+
             case ALLEGRO_EVENT_TIMER:
-                if (moveupdown(joueur, LONGUEUR, sens) != 0){
+                if (moveupdown(&joueur) != 0){
                     joueur.y += keys[DOWN] * joueur.speed;
                     joueur.y -= keys[UP] * joueur.speed;
                     joueur.x -= keys[LEFT] * joueur.speed;

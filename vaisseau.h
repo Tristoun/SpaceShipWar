@@ -16,7 +16,7 @@ typedef struct {
 
 void startship(Ship* joueur);
 void print(Ship joueur);
-int moveupdown(Ship joueur, int longueur, int sens);
+int moveupdown(Ship* joueur);
 int collision(Ship joueur, Beast beastlist[BEASTMAX]);
 
 #endif //SPATIAL_VAISSEAU_H

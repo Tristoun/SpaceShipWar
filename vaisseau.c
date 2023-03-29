@@ -13,6 +13,9 @@
 #define LIFE 3
 #define SIZE 50
 #define SPEED 5
+#define LARGEUR 800
+#define LONGUEUR 500
+
 
 void setup(Ship* joueur) {
     joueur->x = STARTX, joueur->y = STARTY;
@@ -44,31 +47,36 @@ void startship(Ship* joueur) {
     print(*joueur);
 }
 
-int moveupdown(Ship joueur, int longueur, int sens) {
+int moveupdown(Ship* joueur) {
     //Debug touche en diagonale
-    if (sens == 1 && joueur.y-SPEED<0) {
+    if(joueur->x < STARTX) {
+        joueur->x = STARTX;
         return 0;
     }
-    if (sens == 2 && joueur.y+joueur.size+joueur.speed>longueur) {
+    if (joueur->x+SIZE > LARGEUR) {
+        joueur->x = LARGEUR-SIZE;
         return 0;
     }
-    if (sens == 3 && joueur.x+joueur.size+joueur.speed>800) {
+    if (joueur->y < STARTY) {
+        joueur->y = STARTY;
         return 0;
     }
-    if (sens == 4 && joueur.x-joueur.speed<0) {
+    if (joueur->y+SIZE > LONGUEUR) {
+        joueur->y = LONGUEUR-SIZE;
         return 0;
     }
-    return joueur.speed;
+    return joueur->speed;
 }
 
 int collision(Ship joueur, Beast beastlist[BEASTMAX]) {
+    int x1,x2,y1,y2;
     for (int i = 0; i < BEASTMAX; i++) {
         if (beastlist[i].state != -1) {
-            if(beastlist[i].x-beastlist->rax <= joueur.x+joueur.size && beastlist[i].y <= joueur.y+joueur.size && beastlist[i].y >= joueur.y-joueur.size) {
+
                 printf("BOOM\n");
                 return 1;
-            }
         }
-        return 0;
     }
+        return 0;
 }
+
